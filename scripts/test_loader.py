@@ -1,13 +1,21 @@
+from app.services.chunk_service import ChunkService
 from app.services.document_service import DocumentService
 
 documents = DocumentService.load_document(
-    "documents/sample.docx"
+    "documents/sample.pdf"
 )
 
-print("=" * 50)
+chunk_service = ChunkService()
 
-print(documents[0].page_content[:1000])
+chunks = chunk_service.chunk_documents(documents)
 
-print("=" * 50)
+print(f"\nTotal Chunks: {len(chunks)}\n")
 
-print(documents[0].metadata)
+for index, chunk in enumerate(chunks):
+    print("=" * 60)
+    print(f"Chunk {index + 1}")
+    print("=" * 60)
+    print(chunk.page_content[:300])
+    print()
+    print(chunk.metadata)
+    print()
