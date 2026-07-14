@@ -3,7 +3,7 @@ from app.vectorstore.chroma_service import ChromaService
 db = ChromaService()
 
 results = db.similarity_search(
-    "Tell me about Python."
+    "Tell me about Java."
 )
 
 print()
